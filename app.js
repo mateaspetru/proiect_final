@@ -24,7 +24,7 @@ fetch("https://646e69389c677e23218ba227.mockapi.io/Products")
     detailButtons.forEach((detailButton) => {
       detailButton.addEventListener("click", function () {
         const productId = detailButton.getAttribute("data-product-id");
-        window.open(`detail.html?id= ${productId} _blank`);
+        window.open(`detail.html?id=` + productId);
       });
     });
   });
