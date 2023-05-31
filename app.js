@@ -1,4 +1,6 @@
-fetch("https://646e69389c677e23218ba227.mockapi.io/Products")
+const url = `https://646e69389c677e23218ba227.mockapi.io/Products`;
+
+fetch(url)
   .then((result) => result.json())
   .then((products) => {
     document.querySelector(".content").innerHTML = products
@@ -20,11 +22,15 @@ fetch("https://646e69389c677e23218ba227.mockapi.io/Products")
 
     // crearea paginii detail
 
-    const detailButtons = document.querySelectorAll(".detailButton");
-    detailButtons.forEach((detailButton) => {
-      detailButton.addEventListener("click", function () {
-        const productId = detailButton.getAttribute("data-product-id");
-        window.open(`detail.html?id=` + productId);
-      });
+    detailButton();
+  });
+
+function detailButton() {
+  const detailButtons = document.querySelectorAll(".detailButton");
+  detailButtons.forEach((detailButton) => {
+    detailButton.addEventListener("click", function () {
+      const productId = detailButton.getAttribute("data-product-id");
+      window.location.href = `detail.html?id=${productId}`;
     });
   });
+}
