@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  top: 8.688rem;
+  padding-bottom: 3.125rem;
+  display: flex;
+  justify-content: center;
+}
+.newWidth {
+  width: 30rem;
+}
