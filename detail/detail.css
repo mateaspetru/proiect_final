@@ -1,10 +1,21 @@
 .container {
   position: relative;
-  top: 8.688rem;
+  top: 6.688rem;
   padding-bottom: 3.125rem;
   display: flex;
   justify-content: center;
 }
-.newWidth {
-  width: 30rem;
+.col-md-4 {
+  /* width: 100%; */
+}
+.row {
+  justify-content: center;
+  align-items: center;
+}
+
+.rounded-start {
+  border-radius: 0 !important;
+}
+#cantitate {
+  text-align: center;
 }

@@ -12,21 +12,32 @@ fetch(
 
 function createCards(product) {
   document.querySelector(".container").innerHTML = `
-  <div class="card" style="width: 30rem;">
-      <img src="${product.productImage}" class="card-img-top" alt="...">
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${product.productImage}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
       <div class="card-body">
-          <h5 class="card-title">${product.productName}</h5>
-          <p class="card-text">${product.productDetail}</p>
-          <span>
-            <p class="card-text">${product.price}RON</p>
-            <a href="#" class="btn btn-primary">
-            <i style="padding: 0px" class="fa-solid fa-basket-shopping"></i>
-            </a>
-            
-          </span>
+        <h5 class="card-title">${product.productName}  </h5>
+        <h5 class="card-title">${product.price} RON  </h5>
 
+        <p class="card-text">${product.productDetail}</p>
+        <p class="card-text">In stoc: ${product.stock} buc.</p>
+        <span>
+          <p class="card-text">Cantitate</p>
+          <input type="number" name="cantitate" id="cantitate" />
+        </span>
+        <a href="#" class="btn btn-primary detailButton"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
+
+
+
+        
       </div>
-  </div>`;
+    </div>
+  </div>
+</div>
+  `;
 }
 
 /* <div class="card" style="width: 18rem;">
