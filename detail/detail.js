@@ -15,14 +15,14 @@ function createCards(product) {
   <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="${product.productImage}" class="img-fluid rounded-start" alt="...">
+      <img src="${product.image}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">${product.productName}  </h5>
+        <h5 class="card-title">${product.name}  </h5>
         <h5 class="card-title">${product.price} RON  </h5>
 
-        <p class="card-text">${product.productDetail}</p>
+        <p class="card-text">${product.detail}</p>
         <p class="card-text">In stoc: ${product.stock} buc.</p>
         <span>
           <p class="card-text">Cantitate</p>

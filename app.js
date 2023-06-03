@@ -22,9 +22,9 @@ function createCards(products) {
     .map(
       (product) =>
         `<div class="card" style="width: 18rem;">
-          <img src="${product.productImage}" class="card-img-top" alt="...">
+          <img src="${product.image}" class="card-img-top" alt="...">
           <div class="card-body">
-              <h5 class="card-title">${product.productName}</h5>
+              <h5 class="card-title">${product.name}</h5>
               <span>
                 <p class="card-text">${product.price} RON</p>
                 <a href="#" data-product-id="${product.id}" class="btn btn-primary detailButton">Detail</a>
