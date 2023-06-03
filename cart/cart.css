@@ -1,0 +1,20 @@
+* {
+  /* border: dotted; */
+}
+.container {
+  position: relative;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+tr {
+  vertical-align: middle;
+}
+.table {
+  flex: 2;
+}
+.tabel-content {
+  display: flex;
+  gap: 2rem;
+}
