@@ -1,0 +1,10 @@
+.container {
+  position: relative;
+  top: 100px;
+}
+.antet {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+}
