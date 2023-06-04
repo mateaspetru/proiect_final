@@ -1,12 +1,13 @@
 .container {
   position: relative;
-  top: 100px;
+  top: 7rem;
 }
 .antet {
   display: flex;
   justify-content: space-between;
   align-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 img {
   width: 60px;
@@ -14,4 +15,19 @@ img {
 
 tr {
   vertical-align: middle;
+}
+.flex2 {
+  flex: 2;
+}
+.flex1 {
+  flex: 1;
+  display: flex;
+  gap: 15px;
+}
+.width-50 {
+  width: 50%;
+}
+.input-group-text {
+  width: 12%;
+  align-items: center;
 }
