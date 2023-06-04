@@ -1,10 +1,12 @@
 // constant
 const url = `https://646e69389c677e23218ba227.mockapi.io/Products`;
 const addNewProduct = document.querySelector(".add-new-product");
+const tBody = document.querySelector("tbody");
 
 //
 fetchdata();
 addNewProduct.addEventListener("click", onClickCreateInputsForNewProduct);
+tBody.addEventListener("click", removeProductFromDataBase);
 
 // function
 
@@ -20,7 +22,7 @@ function populateWithProducts(products) {
           <td>
             <button
               type="button"
-              class="btn btn-danger remove-product-from-basket"
+              class="btn btn-danger remove-product-from-api"
               product-id="${product.id}"
             >
               Remove
@@ -88,5 +90,32 @@ function onClickCreateInputsForNewProduct(e) {
 
     </div>
     `;
+  }
+  document
+    .querySelector(".cancel")
+    .addEventListener("click", restoreProductsTable);
+}
+
+function restoreProductsTable(e) {
+  if (e.target.classList.contains("cancel")) {
+    location.reload();
+  }
+}
+
+function removeProductFromDataBase(e) {
+  if (e.target.classList.contains("remove-product-from-api")) {
+    const removeBtn = e.target;
+    const atributeId = removeBtn.getAttribute("product-id");
+
+    fetch(url + "/" + atributeId, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        location.reload();
+      }
+    });
   }
 }
