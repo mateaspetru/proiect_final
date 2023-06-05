@@ -2,21 +2,22 @@
 const url = `https://646e69389c677e23218ba227.mockapi.io/Products`;
 const addNewProduct = document.querySelector(".add-new-product");
 const tBody = document.querySelector("tbody");
+// end of constants
 
-//
+//call
 fetchdata();
 addNewProduct.addEventListener("click", onClickCreateInputsForNewProduct);
 tBody.addEventListener("click", removeProductFromDataBase);
+// end of call
 
 // function
-
 function populateWithProducts(products) {
   document.querySelector("tbody").innerHTML = products
     .map(
       (product) =>
         `<tr>
           <td><img src="${product.image}" alt="" /></td>
-          <td>${product.name}</td>
+          <td class="product-name" product-id="${product.id}"> ${product.name}</td>
           <td>${product.price}</td>
           <td>${product.stock}</td>
           <td>
@@ -65,27 +66,27 @@ function onClickCreateInputsForNewProduct(e) {
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Imagine</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="text" class="form-control imagine-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Nume</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="text" class="form-control nume-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
 
     <div class="input-group input-group-lg mb-3">
         <span class="input-group-text" id="inputGroup-sizing-lg">Descriere</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+        <input type="text" class="form-control descriere-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
     </div>
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Pret</span>
-        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="number" class="form-control pret-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
 
     <div class="input-group mb-3">
         <span class="input-group-text" id="inputGroup-sizing-default">Cantitate</span>
-        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+        <input type="number" class="form-control cantitate-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     </div>
 
     </div>
@@ -94,6 +95,8 @@ function onClickCreateInputsForNewProduct(e) {
   document
     .querySelector(".cancel")
     .addEventListener("click", restoreProductsTable);
+
+  document.querySelector(".save").addEventListener("click", newProductCreate);
 }
 
 function restoreProductsTable(e) {
@@ -119,3 +122,32 @@ function removeProductFromDataBase(e) {
     });
   }
 }
+
+function newProductCreate() {
+  const imagine = document.querySelector(".imagine-produs").value;
+  const nume = document.querySelector(".nume-produs").value;
+  const descriere = document.querySelector(".descriere-produs").value;
+  const pret = document.querySelector(".pret-produs").value;
+  const cantitate = document.querySelector(".cantitate-produs").value;
+  const product = {
+    name: nume,
+    price: pret,
+    image: imagine,
+    detail: descriere,
+    stock: cantitate,
+  };
+  console.log(product);
+  return product;
+}
+
+function postProduct(product) {
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "aplication/json",
+    },
+    body: JSON.stringify(product),
+  });
+}
+
+// end of function
