@@ -6,18 +6,25 @@ const tBody = document.querySelector("tbody");
 
 //call
 fetchdata();
-addNewProduct.addEventListener("click", onClickCreateInputsForNewProduct);
+addNewProduct.addEventListener("click", addProduct);
 tBody.addEventListener("click", removeProductFromDataBase);
 // end of call
 
 // function
+async function fetchdata() {
+  try {
+    const response = await fetch(url);
+    const products = await response.json();
+    populateWithProducts(products);
+  } catch (error) {}
+}
 function populateWithProducts(products) {
   document.querySelector("tbody").innerHTML = products
     .map(
       (product) =>
         `<tr>
           <td><img src="${product.image}" alt="" /></td>
-          <td class="product-name" product-id="${product.id}"> ${product.name}</td>
+          <td class="product-name" product-id="${product.id}"><a href="">${product.name}</a> </td>
           <td>${product.price}</td>
           <td>${product.stock}</td>
           <td>
@@ -33,62 +40,10 @@ function populateWithProducts(products) {
     )
     .join("");
 }
-async function fetchdata() {
-  try {
-    const response = await fetch(url);
-    const products = await response.json();
-    populateWithProducts(products);
-  } catch (error) {}
-}
 
-function onClickCreateInputsForNewProduct(e) {
+function addProduct(e) {
   if (e.target.classList.contains("add-new-product")) {
-    const inputsForNewProduct = document.querySelector(".container");
-    inputsForNewProduct.innerHTML = `
-    <div class="antet">
-        <div class="flex2">
-            <h1>Adaugare produs</h1>
-        </div>
-        <div class="flex1">
-            <button type="button" class="btn btn-primary width-50  save">
-              <i class="fa-solid fa-plus"></i>
-              Save
-            </button>
-            <button type="button" class="btn btn-primary width-50 btn-light cancel">
-            
-              Cancel
-            </button>
-        </div>
-    </div>
-    <div class="inputs">
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Imagine</span>
-        <input type="text" class="form-control imagine-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Nume</span>
-        <input type="text" class="form-control nume-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group input-group-lg mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-lg">Descriere</span>
-        <input type="text" class="form-control descriere-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Pret</span>
-        <input type="number" class="form-control pret-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-default">Cantitate</span>
-        <input type="number" class="form-control cantitate-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-    </div>
-
-    </div>
-    `;
+    htmlStructureNewProductAdd();
   }
   document
     .querySelector(".cancel")
@@ -153,6 +108,55 @@ function postProduct(product) {
     },
     body: JSON.stringify(product),
   });
+}
+function htmlStructureNewProductAdd() {
+  const inputsForNewProduct = document.querySelector(".container");
+
+  inputsForNewProduct.innerHTML = `
+    <div class="antet">
+        <div class="flex2">
+            <h1>Adaugare produs</h1>
+        </div>
+        <div class="flex1">
+            <button type="button" class="btn btn-primary width-50  save">
+              <i class="fa-solid fa-plus"></i>
+              Save
+            </button>
+            <button type="button" class="btn btn-primary width-50 btn-light cancel">
+            
+              Cancel
+            </button>
+        </div>
+    </div>
+    <div class="inputs">
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Imagine</span>
+        <input type="text" class="form-control imagine-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Nume</span>
+        <input type="text" class="form-control nume-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Descriere</span>
+        <input type="text" class="form-control descriere-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Pret</span>
+        <input type="number" class="form-control pret-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Cantitate</span>
+        <input type="number" class="form-control cantitate-produs" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+
+    </div>
+    `;
 }
 
 // end of function
