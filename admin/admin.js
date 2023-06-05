@@ -38,9 +38,7 @@ async function fetchdata() {
     const response = await fetch(url);
     const products = await response.json();
     populateWithProducts(products);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 function onClickCreateInputsForNewProduct(e) {
@@ -123,28 +121,35 @@ function removeProductFromDataBase(e) {
   }
 }
 
-function newProductCreate() {
-  const imagine = document.querySelector(".imagine-produs").value;
-  const nume = document.querySelector(".nume-produs").value;
-  const descriere = document.querySelector(".descriere-produs").value;
-  const pret = document.querySelector(".pret-produs").value;
-  const cantitate = document.querySelector(".cantitate-produs").value;
-  const product = {
-    name: nume,
-    price: pret,
-    image: imagine,
-    detail: descriere,
-    stock: cantitate,
-  };
-  console.log(product);
-  return product;
+function newProductCreate(e) {
+  e.stopPropagation();
+  if (e.target.classList.contains("save")) {
+    const imagine = document.querySelector(".imagine-produs").value;
+    const nume = document.querySelector(".nume-produs").value;
+    const descriere = document.querySelector(".descriere-produs").value;
+    const pret = document.querySelector(".pret-produs").value;
+    const cantitate = document.querySelector(".cantitate-produs").value;
+    const product = {
+      name: nume,
+      price: pret,
+      image: imagine,
+      detail: descriere,
+      stock: cantitate,
+    };
+    postProduct(product);
+    fetch(url).then((response) => {
+      if (response.ok) {
+        location.reload();
+      }
+    });
+  }
 }
 
 function postProduct(product) {
   fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "aplication/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(product),
   });
