@@ -61,6 +61,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  justify-content: flex-end;
 }
 .card:hover {
   box-shadow: 5px 5px 5px 5px var(--lightGray);

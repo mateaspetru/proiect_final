@@ -32,3 +32,6 @@ tr {
   width: 12%;
   align-items: center;
 }
+.product-edit {
+  cursor: pointer;
+}
