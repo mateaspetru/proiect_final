@@ -28,7 +28,7 @@ function createCards(product) {
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
         </span>
-        <a href="#" class="btn btn-primary detailButton"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
+        <a href="#" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
 
 
 
@@ -38,16 +38,36 @@ function createCards(product) {
   </div>
 </div>
   `;
+  qtyInputValue();
+  productAddedToCart(product);
 }
 
-/* <div class="card" style="width: 18rem;">
-<img src="${product.productImage}" class="card-img-top" alt="...">
-<div class="card-body">
-    <h5 class="card-title">${product.productName}</h5>
-    <span>
-      <p class="card-text">${product.price} RON</p>
-     
-    </span>
- </div>
-</div>
-</div> */
+function productAddedToCart(product) {
+  const addToCartBtn = document.querySelector(".add-to-cart");
+  addToCartBtn.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-to-cart")) {
+      const qty = document.querySelector("#cantitate").value;
+      if (qty <= 0) {
+        qtyInputValue();
+      } else {
+        bannerDisplay(product);
+      }
+    }
+  });
+}
+
+function qtyInputValue() {
+  document.querySelector("#cantitate").value = 1;
+}
+function bannerDisplay(product) {
+  const bannerMessage = document.querySelector(".banner");
+  bannerMessage.innerHTML = `
+  ${product.name} a fost adaugat in cosul de cumparaturi`;
+  bannerMessage.style.display = "block";
+
+  if (bannerMessage.style.display === "block") {
+    setTimeout(() => {
+      bannerMessage.style.display = "none";
+    }, 1000);
+  }
+}
