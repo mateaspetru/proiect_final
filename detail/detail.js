@@ -31,7 +31,7 @@ function createCards(product) {
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
         </span>
-        <a href="" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
+        <a href="#" onclick="delayRedirect(event)" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
   </div>
 </div>
 
@@ -49,20 +49,22 @@ function productAddedToCart(product) {
     if (e.target.classList.contains("add-to-cart")) {
       const qty = document.querySelector("#cantitate").value;
       const stock = `${product.stock}`;
+      const idOfElement = document
+        .querySelector(".add-to-cart")
+        .getAttribute("product-id");
       if (qty <= 0) {
         qtyInputValue();
       } else if (Number(qty) > stock) {
         alert(`Cantitate inexistenta in stock`);
       } else {
-        const idOfElement = document
-          .querySelector(".add-to-cart")
-          .getAttribute("product-id");
+        bannerDisplay(product);
+
         const data = {
           qty: qty,
           idOfElement: idOfElement,
         };
+
         localStorage.setItem(`${product.name}`, JSON.stringify(data));
-        bannerDisplay(product);
       }
     }
   });
@@ -80,6 +82,14 @@ function bannerDisplay(product) {
   if (bannerMessage.style.display === "block") {
     setTimeout(() => {
       bannerMessage.style.display = "none";
-    }, 1000);
+    }, 700);
   }
+}
+
+function delayRedirect(event) {
+  event.preventDefault();
+
+  setTimeout(function () {
+    window.location.href = "/index.html";
+  }, 700);
 }
