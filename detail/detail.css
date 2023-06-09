@@ -4,6 +4,7 @@
   padding-bottom: 3.125rem;
   display: flex;
   justify-content: center;
+  max-width: 400px;
 }
 .col-md-4 {
   /* width: 100%; */
@@ -29,4 +30,15 @@
   padding: 32px;
   text-align: center;
   z-index: 2;
+}
+.card:hover {
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+.card-body {
+  gap: 0.45rem;
+}
+.card {
+  align-items: center;
 }

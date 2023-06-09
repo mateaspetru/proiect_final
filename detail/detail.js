@@ -12,31 +12,32 @@ fetch(
 
 function createCards(product) {
   document.querySelector(".container").innerHTML = `
-  <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="${product.image}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">${product.name}  </h5>
-        <h5 class="card-title">${product.price} RON  </h5>
+  
 
-        <p class="card-text">${product.detail}</p>
-        <p class="card-text">In stoc: ${product.stock} buc.</p>
-        <span>
+
+<div class="card mb-3">
+    <img src="${
+      product.image
+    }" class="card-img-top" alt="..." style="max-width: 300px;">
+    <div class="card-body">
+      <h5 class="card-title">${product.name}</h5>
+      <h5 class="card-title">${product.price} RON</h5>
+
+      <p class="card-text">${product.detail}</p>
+      <p class="card-text"><small class="text-body-secondary">In stoc: ${
+        product.stock
+      } buc.</small></p>
+      <span>
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
         </span>
-        <a href="#" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
-
-
-
-        
-      </div>
-    </div>
+        <a href="" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
   </div>
 </div>
+
+
+
+
   `;
   qtyInputValue();
   productAddedToCart(product);
@@ -47,9 +48,20 @@ function productAddedToCart(product) {
   addToCartBtn.addEventListener("click", (e) => {
     if (e.target.classList.contains("add-to-cart")) {
       const qty = document.querySelector("#cantitate").value;
+      const stock = `${product.stock}`;
       if (qty <= 0) {
         qtyInputValue();
+      } else if (Number(qty) > stock) {
+        alert(`Cantitate inexistenta in stock`);
       } else {
+        const idOfElement = document
+          .querySelector(".add-to-cart")
+          .getAttribute("product-id");
+        const data = {
+          qty: qty,
+          idOfElement: idOfElement,
+        };
+        localStorage.setItem(`${product.name}`, JSON.stringify(data));
         bannerDisplay(product);
       }
     }
