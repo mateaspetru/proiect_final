@@ -19,9 +19,11 @@
   width: 99%;
   z-index: 1;
   left: 0.5%;
+
   background-color: var(--white);
   box-shadow: 0px 0px 5px 0px var(--lightGray);
 }
+
 .nav {
   gap: 30px;
 }

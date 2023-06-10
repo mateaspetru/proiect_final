@@ -21,3 +21,8 @@ tr {
 td {
   height: 20px;
 }
+.card:hover {
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
