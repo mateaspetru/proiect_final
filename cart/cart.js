@@ -1,23 +1,27 @@
 const keys = Object.keys(localStorage);
 const url = `https://646e69389c677e23218ba227.mockapi.io/Products`;
 const tableBody = document.querySelector("tbody");
-const productQty = document.querySelector(".product-qty");
 let rowCount = [];
-let totalPrice = [];
-console.log(totalPrice);
+let total = 0;
+const productQty = document.querySelector(".product-qty");
 keys.forEach((key) => {
   const value = localStorage.getItem(key);
   const keyName = JSON.parse(value);
   rowCount.push(parseInt(keyName["qty"]));
-
   fetch(url + "/" + keyName["idOfElement"])
     .then((result) => result.json())
     .then((product) => {
       populateWithProduct(product, keyName);
-      totalPrice.push(parseInt(subtotal(product, keyName)));
+      const subtotalAllProduct = product.price * keyName["qty"];
+      total = total + subtotalAllProduct;
+      let h5 = document.querySelector("h5");
+
+      h5.textContent = `Total: ${total} RON`;
+
       removeProductFromCart();
     });
 });
+
 numberOfProducts();
 
 function populateWithProduct(product, keyName) {
@@ -63,14 +67,3 @@ function numberOfProducts() {
   );
   productQty.textContent = `Produse: ${sum} BUC.`;
 }
-
-// function totalPriceOfProducts() {
-//   const total = document.querySelector(".card-title");
-//   const sum = totalPrice.reduce(
-//     (acumulator, curentValue) => acumulator + curentValue,
-//     0
-//   );
-//   console.log(sum);
-// }
-
-// totalPriceOfProducts();
