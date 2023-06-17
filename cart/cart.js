@@ -30,7 +30,11 @@ function populateWithProduct(product, keyName) {
   tr.innerHTML = `
         <td>${product.name}</td>
         <td class="product-price">${product.price} Ron</td>
-        <td class="product-qty">${keyName["qty"]} Buc</td>
+        <td class="product-qty"><button type="button" class="btn btn-danger">-</button>
+        ${
+          keyName["qty"]
+        } Buc  <button type="button" class="btn btn-success">+</button>
+        </td>
         <td class="product-price subtotal">${subtotal(
           product,
           keyName

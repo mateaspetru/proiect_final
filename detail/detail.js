@@ -31,13 +31,9 @@ function createCards(product) {
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
         </span>
-        <a href="#" onclick="delayRedirect(event)" product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
+        <a href="#"  product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
   </div>
 </div>
-
-
-
-
   `;
   qtyInputValue();
   productAddedToCart(product);
@@ -86,10 +82,10 @@ function bannerDisplay(product) {
   }
 }
 
-function delayRedirect(event) {
-  event.preventDefault();
+// function delayRedirect(event) {
+//   event.preventDefault();
 
-  setTimeout(function () {
-    window.location.href = "/index.html";
-  }, 700);
-}
+//   setTimeout(function () {
+//     window.location.href = "/index.html";
+//   }, 700);
+// }
