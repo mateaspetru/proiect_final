@@ -113,6 +113,7 @@ function increaseQty() {
         idOfElement: idOfElement,
       };
       localStorage.setItem(productName, JSON.stringify(data));
+      location.reload();
     }
   });
 }
