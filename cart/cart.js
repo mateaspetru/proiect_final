@@ -63,6 +63,7 @@ function removeProductFromCart() {
     e.stopImmediatePropagation();
     if (e.target.classList.contains("remove-product-from-basket")) {
       const key = e.target.getAttribute("data-key");
+
       localStorage.removeItem(key);
       location.reload();
     }
@@ -83,15 +84,18 @@ function decreaseQty() {
     if (e.target.classList.contains("decrese-qty")) {
       e.stopImmediatePropagation();
       const productName = e.target.getAttribute("data-key");
+      const idOfElement = e.target.getAttribute("product-id");
+
       let qty = e.target.nextElementSibling;
       let tmp = qty.textContent;
       --tmp;
       qty.textContent = tmp;
-
-      // const data = {
-      //   qty: qty,
-      // };
-      // localStorage.setItem(productName, JSON.stringify(data));
+      const data = {
+        qty: tmp,
+        idOfElement: idOfElement,
+      };
+      localStorage.setItem(productName, JSON.stringify(data));
+      location.reload();
     }
   });
 }
