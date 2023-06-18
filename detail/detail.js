@@ -2,7 +2,6 @@ function getProductIdFromURL() {
   var searchParams = new URLSearchParams(window.location.search);
   return searchParams.get("id");
 }
-
 fetch(
   "https://646e69389c677e23218ba227.mockapi.io/Products/" +
     getProductIdFromURL()
@@ -12,9 +11,6 @@ fetch(
 
 function createCards(product) {
   document.querySelector(".container").innerHTML = `
-  
-
-
 <div class="card mb-3">
     <img src="${
       product.image
@@ -22,7 +18,6 @@ function createCards(product) {
     <div class="card-body">
       <h5 class="card-title">${product.name}</h5>
       <h5 class="card-title">${product.price} RON</h5>
-
       <p class="card-text">${product.detail}</p>
       <p class="card-text"><small class="text-body-secondary">In stoc: ${
         product.stock
@@ -30,15 +25,14 @@ function createCards(product) {
       <span>
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
-        </span>
+      </span>
         <a href="#"  product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
-  </div>
+    </div>
 </div>
   `;
   qtyInputValue();
   productAddedToCart(product);
 }
-
 function productAddedToCart(product) {
   const addToCartBtn = document.querySelector(".add-to-cart");
   addToCartBtn.addEventListener("click", (e) => {
@@ -54,18 +48,17 @@ function productAddedToCart(product) {
         alert(`Cantitate inexistenta in stock`);
       } else {
         bannerDisplay(product);
-
+        // local storage
         const data = {
           qty: qty,
           idOfElement: idOfElement,
         };
-
         localStorage.setItem(`${product.name}`, JSON.stringify(data));
+        // end of local storage
       }
     }
   });
 }
-
 function qtyInputValue() {
   document.querySelector("#cantitate").value = 1;
 }
@@ -74,18 +67,9 @@ function bannerDisplay(product) {
   bannerMessage.innerHTML = `
   ${product.name} a fost adaugat in cosul de cumparaturi`;
   bannerMessage.style.display = "block";
-
   if (bannerMessage.style.display === "block") {
     setTimeout(() => {
       bannerMessage.style.display = "none";
     }, 700);
   }
 }
-
-// function delayRedirect(event) {
-//   event.preventDefault();
-
-//   setTimeout(function () {
-//     window.location.href = "/index.html";
-//   }, 700);
-// }

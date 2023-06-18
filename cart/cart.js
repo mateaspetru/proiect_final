@@ -15,13 +15,12 @@ keys.forEach((key) => {
       const subtotalAllProduct = product.price * keyName["qty"];
       total = total + subtotalAllProduct;
       let h5 = document.querySelector("h5");
-
       h5.textContent = `Total: ${total} RON`;
-
-      removeProductFromCart();
     });
+  decreseQty();
+  increseQty();
+  removeProductFromCart();
 });
-
 numberOfProducts();
 
 function populateWithProduct(product, keyName) {
@@ -30,10 +29,12 @@ function populateWithProduct(product, keyName) {
   tr.innerHTML = `
         <td>${product.name}</td>
         <td class="product-price">${product.price} Ron</td>
-        <td class="product-qty"><button type="button" class="btn btn-danger">-</button>
-        ${
+        <td class="product-qty"><button type="button" class="btn margin-right btn-danger decrese-qty" data-key="${
+          product.name
+        }" >-</button>
+        <span class="value">${
           keyName["qty"]
-        } Buc  <button type="button" class="btn btn-success">+</button>
+        }</span> Buc  <button type="button" class="btn margin-left btn-success increse-qty">+</button>
         </td>
         <td class="product-price subtotal">${subtotal(
           product,
@@ -70,4 +71,42 @@ function numberOfProducts() {
     0
   );
   productQty.textContent = `Produse: ${sum} BUC.`;
+}
+
+function decreseQty() {
+  const body = document.querySelector("tbody");
+  body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("decrese-qty")) {
+      e.stopImmediatePropagation();
+      const productName = e.target.getAttribute("data-key");
+      let qty = e.target.nextElementSibling;
+      let tmp = qty.textContent;
+      --tmp;
+      qty.textContent = tmp;
+
+      // const data = {
+      //   qty: qty,
+      // };
+      // localStorage.setItem(productName, JSON.stringify(data));
+    }
+  });
+}
+
+function increseQty() {
+  const body = document.querySelector("tbody");
+  body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("increse-qty")) {
+      e.stopImmediatePropagation();
+      const productName = e.target.getAttribute("data-key");
+      let qty = e.target.previousElementSibling;
+      let tmp = qty.textContent;
+      ++tmp;
+      qty.textContent = tmp;
+
+      // const data = {
+      //   qty: qty,
+      // };
+      // localStorage.setItem(productName, JSON.stringify(data));
+    }
+  });
 }
