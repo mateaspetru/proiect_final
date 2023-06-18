@@ -17,8 +17,8 @@ keys.forEach((key) => {
       let h5 = document.querySelector("h5");
       h5.textContent = `Total: ${total} RON`;
     });
-  decreseQty();
-  increseQty();
+  decreaseQty();
+  increaseQty();
   removeProductFromCart();
 });
 numberOfProducts();
@@ -29,12 +29,16 @@ function populateWithProduct(product, keyName) {
   tr.innerHTML = `
         <td>${product.name}</td>
         <td class="product-price">${product.price} Ron</td>
-        <td class="product-qty"><button type="button" class="btn margin-right btn-danger decrese-qty" data-key="${
-          product.name
-        }" >-</button>
+        <td class="product-qty"><button type="button" class="btn margin-right btn-danger decrese-qty" product-id = '${
+          product.id
+        }' data-key="${product.name}"
+          >-</button>
         <span class="value">${
           keyName["qty"]
-        }</span> Buc  <button type="button" class="btn margin-left btn-success increse-qty">+</button>
+        }</span> Buc  <button type="button" class="btn margin-left btn-success increse-qty" product-id = '${
+    product.id
+  }'
+        data-key="${product.name}" >+</button>
         </td>
         <td class="product-price subtotal">${subtotal(
           product,
@@ -73,7 +77,7 @@ function numberOfProducts() {
   productQty.textContent = `Produse: ${sum} BUC.`;
 }
 
-function decreseQty() {
+function decreaseQty() {
   const body = document.querySelector("tbody");
   body.addEventListener("click", (e) => {
     if (e.target.classList.contains("decrese-qty")) {
@@ -92,21 +96,23 @@ function decreseQty() {
   });
 }
 
-function increseQty() {
+function increaseQty() {
   const body = document.querySelector("tbody");
   body.addEventListener("click", (e) => {
     if (e.target.classList.contains("increse-qty")) {
       e.stopImmediatePropagation();
       const productName = e.target.getAttribute("data-key");
+      const idOfElement = e.target.getAttribute("product-id");
       let qty = e.target.previousElementSibling;
       let tmp = qty.textContent;
       ++tmp;
       qty.textContent = tmp;
 
-      // const data = {
-      //   qty: qty,
-      // };
-      // localStorage.setItem(productName, JSON.stringify(data));
+      const data = {
+        qty: tmp,
+        idOfElement: idOfElement,
+      };
+      localStorage.setItem(productName, JSON.stringify(data));
     }
   });
 }
