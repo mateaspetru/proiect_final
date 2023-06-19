@@ -4,6 +4,9 @@ const tableBody = document.querySelector("tbody");
 let rowCount = [];
 let total = 0;
 const productQty = document.querySelector(".product-qty");
+setTimeout(function () {
+  document.getElementById("loading-screen").style.display = "none";
+}, 500);
 keys.forEach((key) => {
   const value = localStorage.getItem(key);
   const keyName = JSON.parse(value);

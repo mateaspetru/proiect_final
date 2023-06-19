@@ -2,6 +2,9 @@ function getProductIdFromURL() {
   var searchParams = new URLSearchParams(window.location.search);
   return searchParams.get("id");
 }
+setTimeout(function () {
+  document.getElementById("loading-screen").style.display = "none";
+}, 200);
 fetch(
   "https://646e69389c677e23218ba227.mockapi.io/Products/" +
     getProductIdFromURL()

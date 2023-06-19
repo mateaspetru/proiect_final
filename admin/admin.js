@@ -6,7 +6,9 @@ fetchdata();
 addNewProduct.addEventListener("click", addProduct);
 tBody.addEventListener("click", removeProductFromDataBase);
 tBody.addEventListener("click", editProduct);
-
+setTimeout(function () {
+  document.getElementById("loading-screen").style.display = "none";
+}, 500);
 async function fetchdata() {
   try {
     const response = await fetch(url);
