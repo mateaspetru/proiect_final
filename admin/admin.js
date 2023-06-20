@@ -23,7 +23,7 @@ function populateWithProducts(products) {
         `<tr>
           <td><img src="${product.image}" alt="" /></td>
           <td class="product-name" product-id="${product.id}"><a class="product-edit" product-id="${product.id}">${product.name}</a> </td>
-          <td>${product.price}</td>
+          <td>$ ${product.price}</td>
           <td>${product.stock}</td>
           <td>
             <button
@@ -217,7 +217,7 @@ function htmlStructureNewProductEdit(product) {
             <h1>Adaugare produs</h1>
         </div>
         <div class="flex1">
-            <button type="button" class="btn btn-primary width-50  save" product-id="${product.id}" >
+            <button type="button" class="btn btn-primary btn-success width-50  save" product-id="${product.id}" >
               <i class="fa-solid fa-plus"></i>
               Save
             </button>

@@ -20,7 +20,7 @@ function createCards(product) {
     }" class="card-img-top" alt="..." style="max-width: 300px;">
     <div class="card-body">
       <h5 class="card-title">${product.name}</h5>
-      <h5 class="card-title">${product.price} RON</h5>
+      <h5 class="card-title">$ ${product.price}</h5>
       <p class="card-text">${product.detail}</p>
       <p class="card-text"><small class="text-body-secondary">In stoc: ${
         product.stock

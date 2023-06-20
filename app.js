@@ -26,7 +26,7 @@ function createCards(products) {
           <div class="card-body">
               <h5 class="card-title">${product.name}</h5>
               <span>
-                <p class="card-text">${product.price} RON</p>
+                <p class="card-text">$ ${product.price}</p>
                 <a  data-product-id="${product.id}" class="btn btn-primary btn-success detailButton">Detail</a>
               </span>
            </div>

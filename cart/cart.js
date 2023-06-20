@@ -18,7 +18,7 @@ keys.forEach((key) => {
       const subtotalAllProduct = product.price * keyName["qty"];
       total = total + subtotalAllProduct;
       let h5 = document.querySelector("h5");
-      h5.textContent = `Total: ${total} RON`;
+      h5.textContent = `Total: $ ${total}`;
     });
   decreaseQty();
   increaseQty();
@@ -31,7 +31,7 @@ function populateWithProduct(product, keyName) {
   tr.classList = "number-of-product";
   tr.innerHTML = `
         <td>${product.name}</td>
-        <td class="product-price">${product.price} Ron</td>
+        <td class="product-price">$ ${product.price}</td>
         <td class="product-qty"><button type="button" class="btn margin-right btn-danger decrese-qty" product-id = '${
           product.id
         }' data-key="${product.name}"
@@ -43,10 +43,7 @@ function populateWithProduct(product, keyName) {
   }'
         data-key="${product.name}" >+</button>
         </td>
-        <td class="product-price subtotal">${subtotal(
-          product,
-          keyName
-        )} RON</td>
+        <td class="product-price subtotal">$ ${subtotal(product, keyName)}</td>
         <td class="remove-button">
             <button type="button" class="btn btn-danger remove-product-from-basket" data-key="${
               product.name
