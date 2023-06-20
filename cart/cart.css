@@ -33,6 +33,9 @@ td {
 span {
   display: contents;
 }
+td.product-qty {
+  width: 200px;
+}
 
 /* loading screen */
 #loading-screen {
@@ -51,11 +54,4 @@ span {
 #loading-text {
   font-size: 24px;
   color: #000000;
-}
-.btn-success {
-  --bs-btn-bg: var(--lightskyblue);
-  --bs-btn-border-color: var(--lightskyblue);
-  --bs-btn-hover-color: white;
-  --bs-btn-hover-bg: var(--lightskyblue);
-  --bs-btn-hover-border-color: var(--lightskyblue);
 }

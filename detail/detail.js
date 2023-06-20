@@ -29,7 +29,7 @@ function createCards(product) {
           <p class="card-text">Cantitate</p>
           <input type="number" name="cantitate" id="cantitate" />
       </span>
-        <a href="#"  product-id="${getProductIdFromURL()}" class="btn btn-primary add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
+        <a href="#"  product-id="${getProductIdFromURL()}" class="btn btn-primary btn-success add-to-cart"><i class="fa-solid fa-basket-shopping"></i> Adauga in cos</a>
     </div>
 </div>
   `;

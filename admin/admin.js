@@ -116,7 +116,7 @@ function htmlStructureNewProductAdd(product) {
             <h1>Adaugare produs</h1>
         </div>
         <div class="flex1">
-            <button type="button" class="btn btn-primary width-50  save"  >
+            <button type="button" class="btn btn-primary btn-success width-50  save"  >
               <i class="fa-solid fa-plus"></i>
               Save
             </button>
