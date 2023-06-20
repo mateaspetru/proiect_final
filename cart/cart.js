@@ -4,9 +4,7 @@ const tableBody = document.querySelector("tbody");
 let rowCount = [];
 let total = 0;
 const productQty = document.querySelector(".product-qty");
-setTimeout(function () {
-  document.getElementById("loading-screen").style.display = "none";
-}, 500);
+loadingSceen();
 keys.forEach((key) => {
   const value = localStorage.getItem(key);
   const keyName = JSON.parse(value);
@@ -120,4 +118,27 @@ function increaseQty() {
       location.reload();
     }
   });
+}
+function loadingSceen() {
+  setTimeout(function () {
+    document.getElementById("loading-screen").style.display = "none";
+  }, 500);
+}
+function finalizareComanda() {
+  localStorage.clear();
+  bannerDisplay();
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+}
+function bannerDisplay(product) {
+  const bannerMessage = document.querySelector(".banner");
+  bannerMessage.innerHTML = `
+  Comanda dvs  a fost adaugata cu succes!`;
+  bannerMessage.style.display = "block";
+  if (bannerMessage.style.display === "block") {
+    setTimeout(() => {
+      bannerMessage.style.display = "none";
+    }, 1000);
+  }
 }
